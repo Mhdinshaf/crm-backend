@@ -11,7 +11,8 @@ app.get("/", (req, res) => {
   res.send("VibeIt CRM API is running perfectly!");
 });
 
-app.use("/api/auth", require("./routes/auth"));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/leads', require('./routes/leads'));
 
 const PORT = process.env.PORT || 5000;
 
