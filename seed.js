@@ -4,8 +4,7 @@ const db = require("./db");
 async function seedAdmin() {
   try {
     const email = "admin@example.com";
-    const password = Math.random().toString(36).slice(-12) + "aA1!";
-
+    const password = "password123"; 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -16,14 +15,16 @@ async function seedAdmin() {
 
     console.log("Admin user created successfully!");
     console.log(`Email: ${email}`);
-    console.log(`Temporary Password: ${password}`);
-    console.log(" Please change this password immediately!");
+    console.log(`Password: ${password}`);
+    console.log(" You can now login with these credentials");
   } catch (error) {
     if (error.code === "ER_DUP_ENTRY") {
-      console.log("Admin user already exists in the database.");
+      console.log("ℹAdmin user already exists in the database.");
+      console.log(`Email: admin@example.com`);
+      console.log(` Password: password123`);
     } else {
       console.error(
-        "Error creating admin (Check your DB password in .env):",
+        " Error creating admin (Check your DB password in .env):",
         error.message,
       );
     }
