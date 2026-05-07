@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
-const auth = require('../middleware/auth'); 
+const auth = require('../middleware/auth');
+const { validateCreateNote } = require('../middleware/validators');
 
-
-router.post('/', auth, async (req, res) => {
+router.post('/', auth, validateCreateNote, async (req, res) => {
     const { lead_id, content } = req.body;
     const created_by = req.user.id; 
 

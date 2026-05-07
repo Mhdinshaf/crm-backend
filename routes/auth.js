@@ -3,9 +3,10 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const db = require("../db");
+const { validateLogin } = require("../middleware/validators");
 
 // POST /api/auth/login
-router.post("/login", async (req, res) => {
+router.post("/login", validateLogin, async (req, res) => {
   const { email, password } = req.body;
 
   try {

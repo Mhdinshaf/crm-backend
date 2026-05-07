@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
-const auth = require('../middleware/auth'); 
+const auth = require('../middleware/auth');
+const { validateCreateLead, validateUpdateLead } = require('../middleware/validators');
 
-router.post('/', auth, async (req, res) => {
+router.post('/', auth, validateCreateLead, async (req, res) => {
     const { lead_name, company_name, email, phone, source, status, deal_value } = req.body;
     try {
         const [result] = await db.execute(
@@ -27,7 +28,7 @@ router.get('/', auth, async (req, res) => {
     }
 });
 
-router.put('/:id', auth, async (req, res) => {
+router.put('/:id', auth, validateUpdateLead, async (req, res) => {
     const { status, deal_value } = req.body;
     const leadId = req.params.id;
     try {
