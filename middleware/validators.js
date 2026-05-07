@@ -23,6 +23,8 @@ const validateCreateLead = [
   body('company_name').trim().notEmpty().withMessage('Company name is required'),
   body('email').isEmail().withMessage('Email must be valid'),
   body('phone').isMobilePhone().withMessage('Phone must be valid'),
+  body('source').optional().trim().notEmpty().withMessage('Source must be valid'),
+  body('assigned_salesperson').optional().trim().notEmpty().withMessage('Salesperson name must be valid'),
   body('deal_value').optional().isFloat({ min: 0 }).withMessage('Deal value must be a positive number'),
   handleValidationErrors
 ];
@@ -30,6 +32,8 @@ const validateCreateLead = [
 const validateUpdateLead = [
   body('status').optional().notEmpty().withMessage('Status is required'),
   body('deal_value').optional().isFloat({ min: 0 }).withMessage('Deal value must be a positive number'),
+  body('assigned_salesperson').optional().trim().notEmpty().withMessage('Salesperson name must be valid'),
+  body('source').optional().trim().notEmpty().withMessage('Source must be valid'),
   handleValidationErrors
 ];
 
